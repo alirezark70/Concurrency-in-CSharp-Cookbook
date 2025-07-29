@@ -1,0 +1,6 @@
+@NaturalInquery_HostAddress = http://localhost:5055
+
+GET {{NaturalInquery_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
