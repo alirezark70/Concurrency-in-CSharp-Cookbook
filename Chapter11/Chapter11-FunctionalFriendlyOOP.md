@@ -362,7 +362,6 @@ private async Task InitializeAsync()
 
 <div dir="ltr" align="left">
 
-
 ```csharp
 // چیزی که فکر می‌کنیم می‌خواهیم (قابلِ کامپایل نیست).
 public int Data
