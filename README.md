@@ -39,19 +39,19 @@
 |------|--------|----------|
 | **مقدمه** | [Book Translate](./Intro.md) | معرفی کتاب و مفاهیم اولیه |
 | **فصل ۱** | [مروری کلی](./Chapter01/Chapter01-overview.md) | آشنایی با مفاهیم پایه همزمانی |
-| **فصل ۲** | [مبانی Async](./Chapter%202%20-%20Async%20basic.docx) | کار با async/await و Task |
-| **فصل ۳** | [جریان‌های ناهمزمان](./Chapter%203%20-%20Asynchronous%20Streams.docx) | IAsyncEnumerable و AsyncStreams |
-| **فصل ۴** | [مبانی موازی‌سازی](./Chapter%204%20-%20Parallel%20Basics.docx) | Parallel.ForEach و PLINQ |
-| **فصل ۵** | [مبانی Dataflow](./Chapter%205%20-%20Dataflow%20Basics.docx) | TPL Dataflow و pipeline processing |
-| **فصل ۶** | [System.Reactive](./Chapter%206%20-%20System.Reactive.docx) | برنامه‌نویسی واکنشی با Rx.NET |
-| **فصل ۷** | [تست](./Chapter%207%20-%20Testing.docx) | تست کد ناهمزمان و موازی |
-| **فصل ۸** | [تعامل](./Chapter%208%20-%20Interop.docx) | تعامل با کدهای قدیمی و external |
-| **فصل ۹** | [مجموعه‌ها](./Chapter%209%20-%20Collections.docx) | Collections همزمان و thread-safe |
-| **فصل ۱۰** | [لغو عملیات](./Chapter%2010%20-%20Cancellation.docx) | CancellationToken و لغو عملیات |
-| **فصل ۱۱** | [OOP دوستدار تابعی](./Chapter%2011%20-%20FunctionalFriendly%20OOP.docx) | الگوهای functional در C# |
-| **فصل ۱۲** | [همگام‌سازی](./Chapter%2012%20-%20Synchronization.docx) | قفل‌ها و همگام‌سازی threads |
-| **فصل ۱۳** | [زمان‌بندی](./Chapter%2013%20-%20Scheduling.docx) | TaskScheduler و کنترل اجرا |
-| **فصل ۱۴** | [سناریوهای عملی](./Chapter%2014%20-%20Scenarios.docx) | مثال‌های کاربردی و پیاده‌سازی |
+| **فصل ۲** | [مبانی Async](./Chapter02/Chapter02-AsyncBasic.md) | کار با async/await و Task |
+| **فصل ۳** | [جریان‌های ناهمزمان](./Chapter03/Chapter03-AsyncStream.md) | IAsyncEnumerable و AsyncStreams |
+| **فصل ۴** | [مبانی موازی‌سازی](./Chapter04/Chapter04-ParallelBasics.md) | Parallel.ForEach و PLINQ |
+| **فصل ۵** | [مبانی Dataflow](./Chapter05/Chapter05-DataflowBasics.md) | TPL Dataflow و pipeline processing |
+| **فصل ۶** | [System.Reactive](./Chapter06/Chapter6_SystemReactive.md) | برنامه‌نویسی واکنشی با Rx.NET |
+| **فصل ۷** | [تست](./Chapter07/Chapter7-Testing.md) | تست کد ناهمزمان و موازی |
+| **فصل ۸** | [تعامل](./Chapter08/Chapter08-Interop.md) | تعامل با کدهای قدیمی و external |
+| **فصل ۹** | [مجموعه‌ها](./Chapter09/Chapter09-Collections.md) | Collections همزمان و thread-safe |
+| **فصل ۱۰** | [لغو عملیات](./Chapter10/Chapter10-Cancellation.md) | CancellationToken و لغو عملیات |
+| **فصل ۱۱** | [OOP دوستدار تابعی](./Chapter11-FunctionalFriendlyOOP.md) | الگوهای functional در C# |
+| **فصل ۱۲** | [همگام‌سازی](./Chapter12/Chapter12-Synchronization.md) | قفل‌ها و همگام‌سازی threads |
+| **فصل ۱۳** | [زمان‌بندی](./Chapter13/Chapter13-Scheduling.md) | TaskScheduler و کنترل اجرا |
+| **فصل ۱۴** | [سناریوهای عملی](./Chapter14/Chapter14-Scenarios.md) | مثال‌های کاربردی و پیاده‌سازی |
 
 </div>
 
