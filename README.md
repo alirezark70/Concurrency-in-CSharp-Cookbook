@@ -37,8 +37,8 @@
 
 | فصل | عنوان | توضیحات |
 |------|--------|----------|
-| **مقدمه** | [Book Translate](./Book%20Translate.docx) | معرفی کتاب و مفاهیم اولیه |
-| **فصل ۱** | [مروری کلی](./Chapter%201%20-%20overview.docx) | آشنایی با مفاهیم پایه همزمانی |
+| **مقدمه** | [Book Translate](./Intro.md) | معرفی کتاب و مفاهیم اولیه |
+| **فصل ۱** | [مروری کلی](./Chapter01/Chapter01-overview.md) | آشنایی با مفاهیم پایه همزمانی |
 | **فصل ۲** | [مبانی Async](./Chapter%202%20-%20Async%20basic.docx) | کار با async/await و Task |
 | **فصل ۳** | [جریان‌های ناهمزمان](./Chapter%203%20-%20Asynchronous%20Streams.docx) | IAsyncEnumerable و AsyncStreams |
 | **فصل ۴** | [مبانی موازی‌سازی](./Chapter%204%20-%20Parallel%20Basics.docx) | Parallel.ForEach و PLINQ |
@@ -85,16 +85,19 @@
 
 <div dir="rtl" align="right">
 
-
 ## 🤝 مشارکت در پروژه
 
 مشارکت شما در بهبود این ترجمه بسیار ارزشمند است! برای مشارکت:
 
-1. **Fork** کنید
-2. **Branch** جدید بسازید (`git checkout -b feature/improvement`)
-3. تغییرات خود را **Commit** کنید (`git commit -am 'بهبود ترجمه فصل X'`)
-4. **Push** کنید (`git push origin feature/improvement`)
-5. **Pull Request** ایجاد کنید
+. **Fork** کنید
+
+. **Branch** جدید بسازید (`git checkout -b feature/improvement`)
+
+. تغییرات خود را **Commit** کنید (`git commit -am 'بهبود ترجمه فصل X'`)
+
+. **Push** کنید (`git push origin feature/improvement`)
+
+. **Pull Request** ایجاد کنید
 
 </div>
 
@@ -167,11 +170,11 @@ Published by O'Reilly Media, Inc.
 
 
 
-## 📞 تماس با مترجم
+## 📞 تماس با من
 
 برای پیشنهادات، انتقادات یا سوالات:
 
- **GitHub:** [@چروفایل گیت هاب](https://github.com/alirezark70)
+ **GitHub:** [@پروفایل گیت هاب](https://github.com/alirezark70)
 - **ایمیل:** rezaee.alireza7098@gmail.com
 - **لینکدین:** [پروفایل لینکدین](https://www.linkedin.com/in/alireza-rezaee-developer)
 - **تلگرام:** Alirezark70
