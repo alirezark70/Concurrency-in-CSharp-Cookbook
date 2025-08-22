@@ -48,7 +48,7 @@
 | **فصل ۸** | [تعامل](./Chapter08/Chapter08-Interop.md) | تعامل با کدهای قدیمی و external |
 | **فصل ۹** | [مجموعه‌ها](./Chapter09/Chapter09-Collections.md) | Collections همزمان و thread-safe |
 | **فصل ۱۰** | [لغو عملیات](./Chapter10/Chapter10-Cancellation.md) | CancellationToken و لغو عملیات |
-| **فصل ۱۱** | [OOP دوستدار تابعی](./Chapter11-FunctionalFriendlyOOP.md) | الگوهای functional در C# |
+| **فصل ۱۱** | [OOP دوستدار تابعی](./Chapter11/Chapter11-FunctionalFriendlyOOP.md) | الگوهای functional در C# |
 | **فصل ۱۲** | [همگام‌سازی](./Chapter12/Chapter12-Synchronization.md) | قفل‌ها و همگام‌سازی threads |
 | **فصل ۱۳** | [زمان‌بندی](./Chapter13/Chapter13-Scheduling.md) | TaskScheduler و کنترل اجرا |
 | **فصل ۱۴** | [سناریوهای عملی](./Chapter14/Chapter14-Scenarios.md) | مثال‌های کاربردی و پیاده‌سازی |
