@@ -1,7 +1,6 @@
 
 <div dir="rtl" align="right">
 
-
 # فصل ۱۳. برنامه‌ریزی
 
 هنگامی که یک قطعه کد اجرا می‌شود، باید در یک رشته خاص در جایی اجرا شود. یک برنامه‌ریز (scheduler) یک شیء است که تصمیم می‌گیرد یک قطعه کد خاص در کجا اجرا شود. در چارچوب .NET چند نوع برنامه‌ریز مختلف وجود دارد که با تفاوت‌های جزئی توسط کدهای موازی و جریان داده استفاده می‌شوند.
@@ -20,32 +19,20 @@
 
 اکثر اوقات، شما می‌خواهید از `Task.Run` استفاده کنید که بسیار ساده است. کد زیر یک رشته استخر رشته را برای ۲ ثانیه مسدود می‌کند:
 
-
 </div>
-
-<div dir="ltr" align="left">
-
 
 ```csharp
 Task task = Task.Run(() =>
 {
     Thread.Sleep(TimeSpan.FromSeconds(2));
 });
-
 ```
 
-</div>
-
 <div dir="rtl" align="right">
-
 
 `Task.Run` همچنین مقادیر بازگشتی و لامبداهای ناهمگام را به خوبی درک می‌کند. کار بازگردانده شده توسط `Task.Run` در کد زیر پس از ۲ ثانیه با نتیجه ۱۳ کامل خواهد شد:
 
 </div>
-
-<div dir="ltr" align="left">
-
-
 
 ```csharp
 Task<int> task = Task.Run(async () =>
@@ -53,12 +40,9 @@ Task<int> task = Task.Run(async () =>
     await Task.Delay(TimeSpan.FromSeconds(2));
     return 13;
 });
-
 ```
-</div>
 
 <div dir="rtl" align="right">
-
 
 `Task.Run` یک `Task` (یا `Task<T>`) را برمی‌گرداند که به طور طبیعی توسط کدهای ناهمگام یا واکنشی قابل مصرف است.
 
@@ -74,16 +58,9 @@ Task<int> task = Task.Run(async () =>
 
 ### مراجعه کنید به
 
- نسخه ۸.۶ مصرف کد ناهمگام (مانند کار بازگردانده شده از `Task.Run`) با کد واکنشی را پوشش می‌دهد.
-
- نسخه ۸.۴ انتظار ناهمگام برای کد موازی را پوشش می‌دهد که به راحتی از طریق `Task.Run` انجام می‌شود.
-
- نسخه ۴.۴ موازی‌سازی پویا را پوشش می‌دهد، سناریویی که در آن باید از `Task.Factory.StartNew` به جای `Task.Run` استفاده کنید.
-
-
-
-
-
+- نسخه ۸.۶ مصرف کد ناهمگام (مانند کار بازگردانده شده از `Task.Run`) با کد واکنشی را پوشش می‌دهد.
+- نسخه ۸.۴ انتظار ناهمگام برای کد موازی را پوشش می‌دهد که به راحتی از طریق `Task.Run` انجام می‌شود.
+- نسخه ۴.۴ موازی‌سازی پویا را پوشش می‌دهد، سناریویی که در آن باید از `Task.Factory.StartNew` به جای `Task.Run` استفاده کنید.
 
 ## ۱۳.۲ اجرای کد با یک برنامه‌ریز وظیفه
 
@@ -103,16 +80,11 @@ Task<int> task = Task.Run(async () =>
 
 </div>
 
-<div dir="ltr" align="left">
-
-
 ```csharp
 TaskScheduler scheduler = TaskScheduler.FromCurrentSynchronizationContext();
 ```
-</div>
 
 <div dir="rtl" align="right">
-
 
 این کد یک `TaskScheduler` ایجاد می‌کند تا `SynchronizationContext` فعلی را دریافت و کد را در آن متن برنامه‌ریزی کند.
 
@@ -122,18 +94,13 @@ TaskScheduler scheduler = TaskScheduler.FromCurrentSynchronizationContext();
 
 </div>
 
-<div dir="ltr" align="left">
-
-
 ```csharp
 var schedulerPair = new ConcurrentExclusiveSchedulerPair();
 TaskScheduler concurrent = schedulerPair.ConcurrentScheduler;
 TaskScheduler exclusive = schedulerPair.ExclusiveScheduler;
 ```
-</div>
 
 <div dir="rtl" align="right">
-
 
 یک استفاده رایج از `ConcurrentExclusiveSchedulerPair` فقط استفاده از `ExclusiveScheduler` برای اطمینان از اجرای یک وظیفه در هر زمان است. کدی که در `ExclusiveScheduler` اجرا می‌شود در استخر رشته اجرا خواهد شد اما محدود به اجرای انحصاری نسبت به تمام کدهای دیگر با استفاده از همان نمونه `ExclusiveScheduler` خواهد بود.
 
@@ -141,19 +108,13 @@ TaskScheduler exclusive = schedulerPair.ExclusiveScheduler;
 
 </div>
 
-<div dir="ltr" align="left">
-
-
 ```csharp
 var schedulerPair = new ConcurrentExclusiveSchedulerPair(
     TaskScheduler.Default, maxConcurrencyLevel: 8);
 TaskScheduler scheduler = schedulerPair.ConcurrentScheduler;
 ```
 
-</div>
-
 <div dir="rtl" align="right">
-
 
 توجه کنید که این نوع محدودسازی فقط کد را در حال اجرا محدود می‌کند؛ این بسیار متفاوت از نوع محدودسازی منطقی پوشش داده شده در نسخه ۱۲.۵ است. به طور خاص، کد ناهمگام در حالی که در انتظار یک عملیات است، در حال اجرا محسوب نمی‌شود. `ConcurrentScheduler` کد در حال اجرا را محدود می‌کند؛ محدودسازی‌های دیگر، مانند `SemaphoreSlim`، در سطح بالاتر (یعنی یک متد async کامل) محدود می‌شوند.
 
@@ -174,13 +135,6 @@ TaskScheduler scheduler = schedulerPair.ConcurrentScheduler;
 - نسخه ۱۲.۵ محدودسازی منطقی سطح بالاتر را پوشش می‌دهد.
 - نسخه ۶.۲ برنامه‌ریزهای `System.Reactive` برای جریان‌های رویداد را پوشش می‌دهد.
 - نسخه ۷.۶ برنامه‌ریز آزمایشی `System.Reactive` را پوشش می‌دهد.
-
-
-</div>
-
-
-<div dir="rtl" align="right">
-
 
 ## ۱۳.۳ برنامه‌ریزی کد موازی
 
@@ -208,7 +162,6 @@ void RotateMatrices(IEnumerable<IEnumerable<Matrix>> collections, float degrees)
 ```
 
 <div dir="rtl" align="right">
-
 
 ### بحث
 
@@ -243,10 +196,7 @@ var displayBlock = new ActionBlock<int>(
 multiplyBlock.LinkTo(displayBlock);
 ```
 
-</div>
-
 <div dir="rtl" align="right">
-
 
 ### بحث
 
@@ -259,6 +209,5 @@ multiplyBlock.LinkTo(displayBlock);
 ### مراجعه کنید به
 
 - نسخه ۱۳.۲ برنامه‌ریزهای وظیفه رایج و چگونگی انتخاب بین آن‌ها را پوشش می‌دهد.
-
 
 </div>
