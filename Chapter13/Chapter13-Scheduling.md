@@ -5,7 +5,7 @@
 
 هنگامی که یک قطعه کد اجرا می‌شود، باید در یک رشته خاص در جایی اجرا شود. یک برنامه‌ریز (scheduler) یک شیء است که تصمیم می‌گیرد یک قطعه کد خاص در کجا اجرا شود. در چارچوب .NET چند نوع برنامه‌ریز مختلف وجود دارد که با تفاوت‌های جزئی توسط کدهای موازی و جریان داده استفاده می‌شوند.
 
-توصیه می‌کنم تا جایی که ممکن است یک برنامه‌ریز را مشخص نکنید؛ مقادیر پیش‌فرض معمولاً درست هستند. برای مثال، عملگر `await` در کد ناهمگام به طور خودکار متد را در همان متن دوباره اجرا می‌کند مگر اینکه این پیش‌فرض را لغو کنید، همانطور که در نسخه ۲.۷ توضیح داده شده است. به همین ترتیب، کد واکنشی دارای متن‌های پیش‌فرض معقولی برای رویدادهای خود است که می‌توانید آن‌ها را با `ObserveOn`، همانطور که در نسخه ۶.۲ توضیح داده شده، لغو کنید.
+توصیه می‌کنم تا جایی که ممکن است یک برنامه‌ریز را مشخص نکنید؛ مقادیر پیش‌فرض معمولاً درست هستند. برای مثال، عملگر <span dir="ltr">`await`</span> در کد ناهمگام به طور خودکار متد را در همان متن دوباره اجرا می‌کند مگر اینکه این پیش‌فرض را لغو کنید، همانطور که در نسخه ۲.۷ توضیح داده شده است. به همین ترتیب، کد واکنشی دارای متن‌های پیش‌فرض معقولی برای رویدادهای خود است که می‌توانید آن‌ها را با <span dir="ltr">`ObserveOn`</span>، همانطور که در نسخه ۶.۲ توضیح داده شده، لغو کنید.
 
 اگر نیاز دارید کد دیگری در یک متن خاص (مثلاً متن رشته UI یا متن درخواست ASP.NET) اجرا شود، می‌توانید از دستورات برنامه‌ریزی در این فصل برای کنترل برنامه‌ریزی کد خود استفاده کنید.
 
@@ -17,9 +17,11 @@
 
 ### راه‌حل
 
-اکثر اوقات، شما می‌خواهید از `Task.Run` استفاده کنید که بسیار ساده است. کد زیر یک رشته استخر رشته را برای ۲ ثانیه مسدود می‌کند:
+اکثر اوقات، شما می‌خواهید از <span dir="ltr">`Task.Run`</span> استفاده کنید که بسیار ساده است. کد زیر یک رشته استخر رشته را برای ۲ ثانیه مسدود می‌کند:
 
 </div>
+
+<div dir="ltr" align="left">
 
 ```csharp
 Task task = Task.Run(() =>
@@ -28,11 +30,15 @@ Task task = Task.Run(() =>
 });
 ```
 
+</div>
+
 <div dir="rtl" align="right">
 
-`Task.Run` همچنین مقادیر بازگشتی و لامبداهای ناهمگام را به خوبی درک می‌کند. کار بازگردانده شده توسط `Task.Run` در کد زیر پس از ۲ ثانیه با نتیجه ۱۳ کامل خواهد شد:
+<span dir="ltr">`Task.Run`</span> همچنین مقادیر بازگشتی و لامبداهای ناهمگام را به خوبی درک می‌کند. کار بازگردانده شده توسط <span dir="ltr">`Task.Run`</span> در کد زیر پس از ۲ ثانیه با نتیجه ۱۳ کامل خواهد شد:
 
 </div>
+
+<div dir="ltr" align="left">
 
 ```csharp
 Task<int> task = Task.Run(async () =>
@@ -42,25 +48,29 @@ Task<int> task = Task.Run(async () =>
 });
 ```
 
+</div>
+
 <div dir="rtl" align="right">
 
-`Task.Run` یک `Task` (یا `Task<T>`) را برمی‌گرداند که به طور طبیعی توسط کدهای ناهمگام یا واکنشی قابل مصرف است.
+<span dir="ltr">`Task.Run`</span> یک <span dir="ltr">`Task`</span> (یا <span dir="ltr">`Task<T>`</span>) را برمی‌گرداند که به طور طبیعی توسط کدهای ناهمگام یا واکنشی قابل مصرف است.
 
 ### بحث
 
-`Task.Run` برای برنامه‌های کاربردی UI ایده‌آل است، زمانی که کار زمان‌بر را دارید که نمی‌توان آن را در رشته UI انجام داد. برای مثال، نسخه ۸.۴ از `Task.Run` برای هل دادن پردازش موازی به یک رشته استخر رشته استفاده می‌کند. با این حال، در ASP.NET از `Task.Run` استفاده نکنید مگر اینکه کاملاً مطمئن باشید که چه می‌کنید. در ASP.NET، کد مدیریت درخواست از قبل در یک رشته استخر رشته اجرا می‌شود، بنابراین هل دادن آن به رشته استخر رشته دیگر معمولاً ناکارآمد است.
+<span dir="ltr">`Task.Run`</span> برای برنامه‌های کاربردی UI ایده‌آل است، زمانی که کار زمان‌بر را دارید که نمی‌توان آن را در رشته UI انجام داد. برای مثال، نسخه ۸.۴ از <span dir="ltr">`Task.Run`</span> برای هل دادن پردازش موازی به یک رشته استخر رشته استفاده می‌کند. با این حال، در ASP.NET از <span dir="ltr">`Task.Run`</span> استفاده نکنید مگر اینکه کاملاً مطمئن باشید که چه می‌کنید. در ASP.NET، کد مدیریت درخواست از قبل در یک رشته استخر رشته اجرا می‌شود، بنابراین هل دادن آن به رشته استخر رشته دیگر معمولاً ناکارآمد است.
 
-`Task.Run` جایگزین مؤثری برای `BackgroundWorker`، `Delegate.BeginInvoke` و `ThreadPool.QueueUserWorkItem` است. هیچ یک از این APIهای قدیمی‌تر نباید در کدهای جدید استفاده شوند؛ کد با استفاده از `Task.Run` بسیار راحت‌تر می‌توان آن را به درستی نوشت و در طول زمان نگهداری کرد. علاوه بر این، `Task.Run` اکثر موارد استفاده را برای `Thread` پوشش می‌دهد، بنابراین اکثر استفاده‌های `Thread` می‌توانند با `Task.Run` جایگزین شوند (با استثنای نادر رشته‌های آپارتمان تک رشته‌ای).
+<span dir="ltr">`Task.Run`</span> جایگزین مؤثری برای <span dir="ltr">`BackgroundWorker`</span>، <span dir="ltr">`Delegate.BeginInvoke`</span> و <span dir="ltr">`ThreadPool.QueueUserWorkItem`</span> است. هیچ یک از این APIهای قدیمی‌تر نباید در کدهای جدید استفاده شوند؛ کد با استفاده از <span dir="ltr">`Task.Run`</span> بسیار راحت‌تر می‌توان آن را به درستی نوشت و در طول زمان نگهداری کرد. علاوه بر این، <span dir="ltr">`Task.Run`</span> اکثر موارد استفاده را برای <span dir="ltr">`Thread`</span> پوشش می‌دهد، بنابراین اکثر استفاده‌های <span dir="ltr">`Thread`</span> می‌توانند با <span dir="ltr">`Task.Run`</span> جایگزین شوند (با استثنای نادر رشته‌های آپارتمان تک رشته‌ای).
 
-کدهای موازی و جریان داده به طور پیش‌فرض در استخر رشته اجرا می‌شوند، بنابراین معمولاً نیازی به استفاده از `Task.Run` با کدهای اجرا شده توسط کتابخانه‌های Parallel، Parallel LINQ یا TPL Dataflow نیست.
+کدهای موازی و جریان داده به طور پیش‌فرض در استخر رشته اجرا می‌شوند، بنابراین معمولاً نیازی به استفاده از <span dir="ltr">`Task.Run`</span> با کدهای اجرا شده توسط کتابخانه‌های Parallel، Parallel LINQ یا TPL Dataflow نیست.
 
-اگر در حال انجام موازی‌سازی پویا هستید، از `Task.Factory.StartNew` به جای `Task.Run` استفاده کنید. این به این دلیل ضروری است که `Task` بازگردانده شده توسط `Task.Run` با گزینه‌های پیش‌فرض برای استفاده ناهمگام پیکربندی شده است (یعنی برای مصرف توسط کد ناهمگام یا واکنشی). همچنین از مفاهیم پیشرفته‌ای مانند وظایف والد/فرزند که در کدهای موازی پویا رایج‌تر هستند، پشتیبانی نمی‌کند.
+اگر در حال انجام موازی‌سازی پویا هستید، از <span dir="ltr">`Task.Factory.StartNew`</span> به جای <span dir="ltr">`Task.Run`</span> استفاده کنید. این به این دلیل ضروری است که <span dir="ltr">`Task`</span> بازگردانده شده توسط <span dir="ltr">`Task.Run`</span> با گزینه‌های پیش‌فرض برای استفاده ناهمگام پیکربندی شده است (یعنی برای مصرف توسط کد ناهمگام یا واکنشی). همچنین از مفاهیم پیشرفته‌ای مانند وظایف والد/فرزند که در کدهای موازی پویا رایج‌تر هستند، پشتیبانی نمی‌کند.
 
 ### مراجعه کنید به
 
-- نسخه ۸.۶ مصرف کد ناهمگام (مانند کار بازگردانده شده از `Task.Run`) با کد واکنشی را پوشش می‌دهد.
-- نسخه ۸.۴ انتظار ناهمگام برای کد موازی را پوشش می‌دهد که به راحتی از طریق `Task.Run` انجام می‌شود.
-- نسخه ۴.۴ موازی‌سازی پویا را پوشش می‌دهد، سناریویی که در آن باید از `Task.Factory.StartNew` به جای `Task.Run` استفاده کنید.
+نسخه ۸.۶ مصرف کد ناهمگام (مانند کار بازگردانده شده از <span dir="ltr">`Task.Run`</span>) با کد واکنشی را پوشش می‌دهد.
+
+نسخه ۸.۴ انتظار ناهمگام برای کد موازی را پوشش می‌دهد که به راحتی از طریق <span dir="ltr">`Task.Run`</span> انجام می‌شود.
+
+نسخه ۴.۴ موازی‌سازی پویا را پوشش می‌دهد، سناریویی که در آن باید از <span dir="ltr">`Task.Factory.StartNew`</span> به جای <span dir="ltr">`Task.Run`</span> استفاده کنید.
 
 ## ۱۳.۲ اجرای کد با یک برنامه‌ریز وظیفه
 
@@ -72,27 +82,33 @@ Task<int> task = Task.Run(async () =>
 
 ### راه‌حل
 
-در .NET انواع مختلفی وجود دارند که می‌توانند برنامه‌ریزی را مدیریت کنند؛ این دستورالعمل بر `TaskScheduler` تمرکز می‌کند زیرا قابل حمل و نسبتاً آسان در استفاده است.
+در .NET انواع مختلفی وجود دارند که می‌توانند برنامه‌ریزی را مدیریت کنند؛ این دستورالعمل بر <span dir="ltr">`TaskScheduler`</span> تمرکز می‌کند زیرا قابل حمل و نسبتاً آسان در استفاده است.
 
-ساده‌ترین `TaskScheduler`، `TaskScheduler.Default` است که کارها را در استخر رشته صف می‌کند. شما به ندرت `TaskScheduler.Default` را در کد خود مشخص خواهید کرد، اما مهم است که از آن آگاه باشید، زیرا پیش‌فرض برای بسیاری از سناریوهای برنامه‌ریزی است. `Task.Run`، کدهای موازی و جریان داده همگی از `TaskScheduler.Default` استفاده می‌کنند.
+ساده‌ترین <span dir="ltr">`TaskScheduler`</span>، <span dir="ltr">`TaskScheduler.Default`</span> است که کارها را در استخر رشته صف می‌کند. شما به ندرت <span dir="ltr">`TaskScheduler.Default`</span> را در کد خود مشخص خواهید کرد، اما مهم است که از آن آگاه باشید، زیرا پیش‌فرض برای بسیاری از سناریوهای برنامه‌ریزی است. <span dir="ltr">`Task.Run`</span>، کدهای موازی و جریان داده همگی از <span dir="ltr">`TaskScheduler.Default`</span> استفاده می‌کنند.
 
-می‌توانید یک متن خاص را دریافت و سپس کار را دوباره به آن برنامه‌ریزی کنید با استفاده از `TaskScheduler.FromCurrentSynchronizationContext`:
+می‌توانید یک متن خاص را دریافت و سپس کار را دوباره به آن برنامه‌ریزی کنید با استفاده از <span dir="ltr">`TaskScheduler.FromCurrentSynchronizationContext`</span>:
 
 </div>
+
+<div dir="ltr" align="left">
 
 ```csharp
 TaskScheduler scheduler = TaskScheduler.FromCurrentSynchronizationContext();
 ```
 
+</div>
+
 <div dir="rtl" align="right">
 
-این کد یک `TaskScheduler` ایجاد می‌کند تا `SynchronizationContext` فعلی را دریافت و کد را در آن متن برنامه‌ریزی کند.
+این کد یک <span dir="ltr">`TaskScheduler`</span> ایجاد می‌کند تا <span dir="ltr">`SynchronizationContext`</span> فعلی را دریافت و کد را در آن متن برنامه‌ریزی کند.
 
-`SynchronizationContext` یک نوع است که یک متن برنامه‌ریزی عمومی را نشان می‌دهد. چندین متن مختلف در چارچوب .NET وجود دارد؛ اکثر چارچوب‌های UI یک `SynchronizationContext` ارائه می‌دهند که رشته UI را نشان می‌دهد، و ASP.NET قبل از Core یک `SynchronizationContext` ارائه می‌داد که متن درخواست HTTP را نشان می‌داد.
+<span dir="ltr">`SynchronizationContext`</span> یک نوع است که یک متن برنامه‌ریزی عمومی را نشان می‌دهد. چندین متن مختلف در چارچوب .NET وجود دارد؛ اکثر چارچوب‌های UI یک <span dir="ltr">`SynchronizationContext`</span> ارائه می‌دهند که رشته UI را نشان می‌دهد، و ASP.NET قبل از Core یک <span dir="ltr">`SynchronizationContext`</span> ارائه می‌داد که متن درخواست HTTP را نشان می‌داد.
 
-`ConcurrentExclusiveSchedulerPair` یک نوع قدرتمند دیگر معرفی شده در .NET 4.5 است؛ این در واقع دو برنامه‌ریز مرتبط با هم است. عضو `ConcurrentScheduler` یک برنامه‌ریز است که اجازه می‌دهد چندین وظیفه همزمان اجرا شوند، تا زمانی که هیچ وظیفه‌ای در `ExclusiveScheduler` در حال اجرا نباشد. `ExclusiveScheduler` فقط کد را یک وظیفه در یک زمان اجرا می‌کند، و فقط زمانی که هیچ وظیفه‌ای در حال اجرا در `ConcurrentScheduler` نیست:
+<span dir="ltr">`ConcurrentExclusiveSchedulerPair`</span> یک نوع قدرتمند دیگر معرفی شده در .NET 4.5 است؛ این در واقع دو برنامه‌ریز مرتبط با هم است. عضو <span dir="ltr">`ConcurrentScheduler`</span> یک برنامه‌ریز است که اجازه می‌دهد چندین وظیفه همزمان اجرا شوند، تا زمانی که هیچ وظیفه‌ای در <span dir="ltr">`ExclusiveScheduler`</span> در حال اجرا نباشد. <span dir="ltr">`ExclusiveScheduler`</span> فقط کد را یک وظیفه در یک زمان اجرا می‌کند، و فقط زمانی که هیچ وظیفه‌ای در حال اجرا در <span dir="ltr">`ConcurrentScheduler`</span> نیست:
 
 </div>
+
+<div dir="ltr" align="left">
 
 ```csharp
 var schedulerPair = new ConcurrentExclusiveSchedulerPair();
@@ -100,13 +116,17 @@ TaskScheduler concurrent = schedulerPair.ConcurrentScheduler;
 TaskScheduler exclusive = schedulerPair.ExclusiveScheduler;
 ```
 
+</div>
+
 <div dir="rtl" align="right">
 
-یک استفاده رایج از `ConcurrentExclusiveSchedulerPair` فقط استفاده از `ExclusiveScheduler` برای اطمینان از اجرای یک وظیفه در هر زمان است. کدی که در `ExclusiveScheduler` اجرا می‌شود در استخر رشته اجرا خواهد شد اما محدود به اجرای انحصاری نسبت به تمام کدهای دیگر با استفاده از همان نمونه `ExclusiveScheduler` خواهد بود.
+یک استفاده رایج از <span dir="ltr">`ConcurrentExclusiveSchedulerPair`</span> فقط استفاده از <span dir="ltr">`ExclusiveScheduler`</span> برای اطمینان از اجرای یک وظیفه در هر زمان است. کدی که در <span dir="ltr">`ExclusiveScheduler`</span> اجرا می‌شود در استخر رشته اجرا خواهد شد اما محدود به اجرای انحصاری نسبت به تمام کدهای دیگر با استفاده از همان نمونه <span dir="ltr">`ExclusiveScheduler`</span> خواهد بود.
 
-کاربرد دیگر `ConcurrentExclusiveSchedulerPair` به عنوان یک برنامه‌ریز محدودکننده است. می‌توانید یک `ConcurrentExclusiveSchedulerPair` ایجاد کنید که همزمانی خود را محدود کند. در این سناریو، معمولاً از `ExclusiveScheduler` استفاده نمی‌شود:
+کاربرد دیگر <span dir="ltr">`ConcurrentExclusiveSchedulerPair`</span> به عنوان یک برنامه‌ریز محدودکننده است. می‌توانید یک <span dir="ltr">`ConcurrentExclusiveSchedulerPair`</span> ایجاد کنید که همزمانی خود را محدود کند. در این سناریو، معمولاً از <span dir="ltr">`ExclusiveScheduler`</span> استفاده نمی‌شود:
 
 </div>
+
+<div dir="ltr" align="left">
 
 ```csharp
 var schedulerPair = new ConcurrentExclusiveSchedulerPair(
@@ -114,27 +134,29 @@ var schedulerPair = new ConcurrentExclusiveSchedulerPair(
 TaskScheduler scheduler = schedulerPair.ConcurrentScheduler;
 ```
 
+</div>
+
 <div dir="rtl" align="right">
 
-توجه کنید که این نوع محدودسازی فقط کد را در حال اجرا محدود می‌کند؛ این بسیار متفاوت از نوع محدودسازی منطقی پوشش داده شده در نسخه ۱۲.۵ است. به طور خاص، کد ناهمگام در حالی که در انتظار یک عملیات است، در حال اجرا محسوب نمی‌شود. `ConcurrentScheduler` کد در حال اجرا را محدود می‌کند؛ محدودسازی‌های دیگر، مانند `SemaphoreSlim`، در سطح بالاتر (یعنی یک متد async کامل) محدود می‌شوند.
+توجه کنید که این نوع محدودسازی فقط کد را در حال اجرا محدود می‌کند؛ این بسیار متفاوت از نوع محدودسازی منطقی پوشش داده شده در نسخه ۱۲.۵ است. به طور خاص، کد ناهمگام در حالی که در انتظار یک عملیات است، در حال اجرا محسوب نمی‌شود. <span dir="ltr">`ConcurrentScheduler`</span> کد در حال اجرا را محدود می‌کند؛ محدودسازی‌های دیگر، مانند <span dir="ltr">`SemaphoreSlim`</span>، در سطح بالاتر (یعنی یک متد async کامل) محدود می‌شوند.
 
 ### بحث
 
-ممکن است متوجه شده باشید که مثال کد آخر `TaskScheduler.Default` را به سازنده `ConcurrentExclusiveSchedulerPair` ارسال کرد. این به این دلیل است که `ConcurrentExclusiveSchedulerPair` منطق همزمان/انحصاری خود را در اطراف یک `TaskScheduler` موجود اعمال می‌کند.
+ممکن است متوجه شده باشید که مثال کد آخر <span dir="ltr">`TaskScheduler.Default`</span> را به سازنده <span dir="ltr">`ConcurrentExclusiveSchedulerPair`</span> ارسال کرد. این به این دلیل است که <span dir="ltr">`ConcurrentExclusiveSchedulerPair`</span> منطق همزمان/انحصاری خود را در اطراف یک <span dir="ltr">`TaskScheduler`</span> موجود اعمال می‌کند.
 
-این دستورالعمل `TaskScheduler.FromCurrentSynchronizationContext` را معرفی می‌کند که برای اجرای کد در یک متن دریافت شده مفید است. همچنین امکان استفاده مستقیم از `SynchronizationContext` برای اجرای کد در آن متن وجود دارد؛ با این حال، این رویکرد را توصیه نمی‌کنم. هر زمان که ممکن است، از عملگر `await` برای ادامه در یک متن به طور ضمنی دریافت شده استفاده کنید یا از یک پوشش `TaskScheduler` استفاده کنید.
+این دستورالعمل <span dir="ltr">`TaskScheduler.FromCurrentSynchronizationContext`</span> را معرفی می‌کند که برای اجرای کد در یک متن دریافت شده مفید است. همچنین امکان استفاده مستقیم از <span dir="ltr">`SynchronizationContext`</span> برای اجرای کد در آن متن وجود دارد؛ با این حال، این رویکرد را توصیه نمی‌کنم. هر زمان که ممکن است، از عملگر <span dir="ltr">`await`</span> برای ادامه در یک متن به طور ضمنی دریافت شده استفاده کنید یا از یک پوشش <span dir="ltr">`TaskScheduler`</span> استفاده کنید.
 
-هرگز از انواع مختص پلتفرم برای اجرای کد در رشته UI استفاده نکنید. WPF، Silverlight، iOS و Android همگی نوع `Dispatcher` را ارائه می‌دهند، Universal Windows از `CoreDispatcher` استفاده می‌کند، و Windows Forms رابط `ISynchronizeInvoke` (یعنی `Control.Invoke`) را دارد. از هیچ یک از این انواع در کدهای جدید استفاده نکنید؛ فقط وانمود کنید که وجود ندارند. استفاده از آن‌ها کد شما را بیهوده به یک پلتفرم خاص وابسته می‌کند. `SynchronizationContext` یک انتزاع عمومی در اطراف این انواع است.
+هرگز از انواع مختص پلتفرم برای اجرای کد در رشته UI استفاده نکنید. WPF، Silverlight، iOS و Android همگی نوع <span dir="ltr">`Dispatcher`</span> را ارائه می‌دهند، Universal Windows از <span dir="ltr">`CoreDispatcher`</span> استفاده می‌کند، و Windows Forms رابط <span dir="ltr">`ISynchronizeInvoke`</span> (یعنی <span dir="ltr">`Control.Invoke`</span>) را دارد. از هیچ یک از این انواع در کدهای جدید استفاده نکنید؛ فقط وانمود کنید که وجود ندارند. استفاده از آن‌ها کد شما را بیهوده به یک پلتفرم خاص وابسته می‌کند. <span dir="ltr">`SynchronizationContext`</span> یک انتزاع عمومی در اطراف این انواع است.
 
-`System.Reactive (Rx)` یک انتزاع برنامه‌ریز عمومی‌تر معرفی می‌کند: `IScheduler`. یک برنامه‌ریز Rx قادر به پوشش هر نوع برنامه‌ریز دیگری است؛ `TaskPoolScheduler` هر `TaskFactory` (که شامل یک `TaskScheduler` است) را پوشش می‌دهد. تیم Rx همچنین یک اجرای `IScheduler` را تعریف کرده است که برای آزمایش به صورت دستی کنترل می‌شود. اگر نیاز به استفاده از یک انتزاع برنامه‌ریز دارید، `IScheduler` از Rx را توصیه می‌کنم؛ آن خوب طراحی شده، خوب تعریف شده و برای آزمایش دوستانه است. با این حال، اکثر اوقات به یک انتزاع برنامه‌ریز نیاز ندارید و کتابخانه‌های قدیمی‌تر، مانند `Task Parallel Library (TPL)` و `TPL Dataflow`، فقط نوع `TaskScheduler` را درک می‌کنند.
+<span dir="ltr">`System.Reactive (Rx)`</span> یک انتزاع برنامه‌ریز عمومی‌تر معرفی می‌کند: <span dir="ltr">`IScheduler`</span>. یک برنامه‌ریز Rx قادر به پوشش هر نوع برنامه‌ریز دیگری است؛ <span dir="ltr">`TaskPoolScheduler`</span> هر <span dir="ltr">`TaskFactory`</span> (که شامل یک <span dir="ltr">`TaskScheduler`</span> است) را پوشش می‌دهد. تیم Rx همچنین یک اجرای <span dir="ltr">`IScheduler`</span> را تعریف کرده است که برای آزمایش به صورت دستی کنترل می‌شود. اگر نیاز به استفاده از یک انتزاع برنامه‌ریز دارید، <span dir="ltr">`IScheduler`</span> از Rx را توصیه می‌کنم؛ آن خوب طراحی شده، خوب تعریف شده و برای آزمایش دوستانه است. با این حال، اکثر اوقات به یک انتزاع برنامه‌ریز نیاز ندارید و کتابخانه‌های قدیمی‌تر، مانند <span dir="ltr">`Task Parallel Library (TPL)`</span> و <span dir="ltr">`TPL Dataflow`</span>، فقط نوع <span dir="ltr">`TaskScheduler`</span> را درک می‌کنند.
 
 ### مراجعه کنید به
 
-- نسخه ۱۳.۳ اعمال `TaskScheduler` به کد موازی را پوشش می‌دهد.
-- نسخه ۱۳.۴ اعمال `TaskScheduler` به کد جریان داده را پوشش می‌دهد.
+- نسخه ۱۳.۳ اعمال <span dir="ltr">`TaskScheduler`</span> به کد موازی را پوشش می‌دهد.
+- نسخه ۱۳.۴ اعمال <span dir="ltr">`TaskScheduler`</span> به کد جریان داده را پوشش می‌دهد.
 - نسخه ۱۲.۵ محدودسازی منطقی سطح بالاتر را پوشش می‌دهد.
-- نسخه ۶.۲ برنامه‌ریزهای `System.Reactive` برای جریان‌های رویداد را پوشش می‌دهد.
-- نسخه ۷.۶ برنامه‌ریز آزمایشی `System.Reactive` را پوشش می‌دهد.
+- نسخه ۶.۲ برنامه‌ریزهای <span dir="ltr">`System.Reactive`</span> برای جریان‌های رویداد را پوشش می‌دهد.
+- نسخه ۷.۶ برنامه‌ریز آزمایشی <span dir="ltr">`System.Reactive`</span> را پوشش می‌دهد.
 
 ## ۱۳.۳ برنامه‌ریزی کد موازی
 
@@ -144,9 +166,11 @@ TaskScheduler scheduler = schedulerPair.ConcurrentScheduler;
 
 ### راه‌حل
 
-پس از ایجاد یک نمونه `TaskScheduler` مناسب (به نسخه ۱۳.۲ مراجعه کنید)، می‌توانید آن را در گزینه‌هایی که به یک متد `Parallel` ارسال می‌کنید، بگنجانید. کد زیر یک دنباله از دنباله‌های ماتریس‌ها را دریافت می‌کند. این کد چندین حلقه موازی را شروع می‌کند و می‌خواهد همزمانی کل حلقه‌ها را صرف نظر از تعداد ماتریس‌ها در هر دنباله محدود کند:
+پس از ایجاد یک نمونه <span dir="ltr">`TaskScheduler`</span> مناسب (به نسخه ۱۳.۲ مراجعه کنید)، می‌توانید آن را در گزینه‌هایی که به یک متد <span dir="ltr">`Parallel`</span> ارسال می‌کنید، بگنجانید. کد زیر یک دنباله از دنباله‌های ماتریس‌ها را دریافت می‌کند. این کد چندین حلقه موازی را شروع می‌کند و می‌خواهد همزمانی کل حلقه‌ها را صرف نظر از تعداد ماتریس‌ها در هر دنباله محدود کند:
 
 </div>
+
+<div dir="ltr" align="left">
 
 ```csharp
 void RotateMatrices(IEnumerable<IEnumerable<Matrix>> collections, float degrees)
@@ -161,13 +185,15 @@ void RotateMatrices(IEnumerable<IEnumerable<Matrix>> collections, float degrees)
 }
 ```
 
+</div>
+
 <div dir="rtl" align="right">
 
 ### بحث
 
-`Parallel.Invoke` نیز یک نمونه از `ParallelOptions` را دریافت می‌کند، بنابراین می‌توانید یک `TaskScheduler` را به `Parallel.Invoke` به همان روش `Parallel.ForEach` ارسال کنید. اگر در حال انجام کد موازی پویا هستید، می‌توانید `TaskScheduler` را مستقیماً به `TaskFactory.StartNew` یا `Task.ContinueWith` ارسال کنید.
+<span dir="ltr">`Parallel.Invoke`</span> نیز یک نمونه از <span dir="ltr">`ParallelOptions`</span> را دریافت می‌کند، بنابراین می‌توانید یک <span dir="ltr">`TaskScheduler`</span> را به <span dir="ltr">`Parallel.Invoke`</span> به همان روش <span dir="ltr">`Parallel.ForEach`</span> ارسال کنید. اگر در حال انجام کد موازی پویا هستید، می‌توانید <span dir="ltr">`TaskScheduler`</span> را مستقیماً به <span dir="ltr">`TaskFactory.StartNew`</span> یا <span dir="ltr">`Task.ContinueWith`</span> ارسال کنید.
 
-هیچ راهی برای ارسال `TaskScheduler` به کد `Parallel LINQ (PLINQ)` وجود ندارد.
+هیچ راهی برای ارسال <span dir="ltr">`TaskScheduler`</span> به کد <span dir="ltr">`Parallel LINQ (PLINQ)`</span> وجود ندارد.
 
 ### مراجعه کنید به
 
@@ -181,9 +207,11 @@ void RotateMatrices(IEnumerable<IEnumerable<Matrix>> collections, float degrees)
 
 ### راه‌حل
 
-پس از ایجاد یک نمونه `TaskScheduler` مناسب (به نسخه ۱۳.۲ مراجعه کنید)، می‌توانید آن را در گزینه‌هایی که به یک بلوک جریان داده ارسال می‌کنید، بگنجانید. هنگامی که از رشته UI فراخوانی می‌شود، کد زیر یک شبکه جریان داده ایجاد می‌کند که همه مقادیر ورودی را در دو ضرب می‌کند (با استفاده از استخر رشته) و سپس مقادیر حاصل را به موارد یک جعبه لیست اضافه می‌کند (در رشته UI):
+پس از ایجاد یک نمونه <span dir="ltr">`TaskScheduler`</span> مناسب (به نسخه ۱۳.۲ مراجعه کنید)، می‌توانید آن را در گزینه‌هایی که به یک بلوک جریان داده ارسال می‌کنید، بگنجانید. هنگامی که از رشته UI فراخوانی می‌شود، کد زیر یک شبکه جریان داده ایجاد می‌کند که همه مقادیر ورودی را در دو ضرب می‌کند (با استفاده از استخر رشته) و سپس مقادیر حاصل را به موارد یک جعبه لیست اضافه می‌کند (در رشته UI):
 
 </div>
+
+<div dir="ltr" align="left">
 
 ```csharp
 var options = new ExecutionDataflowBlockOptions
@@ -196,15 +224,17 @@ var displayBlock = new ActionBlock<int>(
 multiplyBlock.LinkTo(displayBlock);
 ```
 
+</div>
+
 <div dir="rtl" align="right">
 
 ### بحث
 
-مشخص کردن یک `TaskScheduler` به‌ویژه در هماهنگ کردن اقدامات بلوک‌ها در قسمت‌های مختلف شبکه جریان داده مفید است. برای مثال، می‌توانید از `ConcurrentExclusiveSchedulerPair.ExclusiveScheduler` استفاده کنید تا اطمینان حاصل کنید که بلوک‌های A و C هرگز کد را همزمان اجرا نمی‌کنند، در حالی که به بلوک B اجازه می‌دهید هر زمان که می‌خواهد اجرا شود.
+مشخص کردن یک <span dir="ltr">`TaskScheduler`</span> به‌ویژه در هماهنگ کردن اقدامات بلوک‌ها در قسمت‌های مختلف شبکه جریان داده مفید است. برای مثال، می‌توانید از <span dir="ltr">`ConcurrentExclusiveSchedulerPair.ExclusiveScheduler`</span> استفاده کنید تا اطمینان حاصل کنید که بلوک‌های A و C هرگز کد را همزمان اجرا نمی‌کنند، در حالی که به بلوک B اجازه می‌دهید هر زمان که می‌خواهد اجرا شود.
 
-به خاطر داشته باشید که همگام‌سازی توسط `TaskScheduler` فقط در حین اجرای کد اعمال می‌شود. برای مثال، اگر یک بلوک عملیاتی دارید که کد ناهمگام اجرا می‌کند و یک برنامه‌ریز انحصاری اعمال می‌کنید، کد در حالی که در انتظار است، در حال اجرا محسوب نمی‌شود.
+به خاطر داشته باشید که همگام‌سازی توسط <span dir="ltr">`TaskScheduler`</span> فقط در حین اجرای کد اعمال می‌شود. برای مثال، اگر یک بلوک عملیاتی دارید که کد ناهمگام اجرا می‌کند و یک برنامه‌ریز انحصاری اعمال می‌کنید، کد در حالی که در انتظار است، در حال اجرا محسوب نمی‌شود.
 
-می‌توانید یک `TaskScheduler` را برای هر نوع بلوک جریان داده مشخص کنید. حتی اگر یک بلوک کد شما را اجرا نکند (مثلاً `BufferBlock<T>`)، باز هم کارهای مدیریتی وجود دارد که باید انجام دهد و از `TaskScheduler` ارائه شده برای تمام کارهای داخلی خود استفاده خواهد کرد.
+می‌توانید یک <span dir="ltr">`TaskScheduler`</span> را برای هر نوع بلوک جریان داده مشخص کنید. حتی اگر یک بلوک کد شما را اجرا نکند (مثلاً <span dir="ltr">`BufferBlock<T>`</span>)، باز هم کارهای مدیریتی وجود دارد که باید انجام دهد و از <span dir="ltr">`TaskScheduler`</span> ارائه شده برای تمام کارهای داخلی خود استفاده خواهد کرد.
 
 ### مراجعه کنید به
 
